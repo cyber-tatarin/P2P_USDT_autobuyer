@@ -1,0 +1,25 @@
+
+<!--        <header class="header">-->
+<!--            <div class="header-container">-->
+<!--                    <nav class="nav">-->
+<!--                        <div class="nav-logo nav-logo-instruction">-->
+<!--                            <a href="#" class="nav-log__title">КроссМ</a>-->
+<!--							<a href="{% url 'instruction' %}" class="a-instruction">Инструкция по сайту</a>-->
+<!--                        </div>-->
+<!--                        <div class="menu">-->
+<!--                            <a id="CATALOG" href="{% url 'offers:catalog' %}" class="nav-menu__title">Каталог</a>-->
+<!--                            <a id="KM" href="{% url 'what-is-cm' %}" class="nav-menu__title">Что такое КМ?</a>-->
+<!--                            <a id="OFFERS" href="{% url 'offers:my-offers' %}" class="nav-menu__title">Мои предложения</a>-->
+<!--                            {% if user.is_authenticated %}-->
+<!--                            <div onclick="window.location.href = '{% url 'view-profile' request.user.id %}'" class="nav-menu__user">-->
+<!--                                {% if profile_ph %}-->
+<!--                                <img id="header-image" class="nav-menu__user__img" src="{{profile_ph}}">-->
+<!--                                {% else %}-->
+<!--                                <img id="header-image" class="nav-menu__user__img" src="/media/images/no_company_logo.png">-->
+<!--                            {% endif %}-->
+<!--                            </div>-->
+<!--                            {% endif %}-->
+<!--                        </div>-->
+<!--                    </nav>-->
+<!--            </div>-->
+<!--        </header>-->

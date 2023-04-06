@@ -1,0 +1,101 @@
+<!--<form method="post">-->
+<!--    {% csrf_token%}-->
+<!--{{form}}-->
+<!--<button class="last-button-add" type="submit" id="upload">-->
+
+<!--                        <p class="button-p">Войти</p>-->
+
+<!--                    </button>-->
+<!--    </form>-->
+
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+		{% include "favicon.html" %}
+        <title>PMarket | Вход</title>
+    </head>
+    <body>
+
+{% block content %}
+
+        <main>
+            <div class="container-padding">
+            <div class="container">
+                <h2 class="main-title">
+                    Вход
+                </h2>
+                <hr class="hr-solid">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="inputs inputs-20">
+                        <div class="inputs-part inputs-part__double">
+                            <h3 class="inputs-part__title">Email</h3>
+                            <div class="inputs-part__div">
+                                {{form.username|attr:"maxlength:36"}}
+                            </div>
+
+                        </div>
+                        <div class="inputs-part inputs-part__double">
+                            <h3 class="inputs-part__title">Пароль</h3>
+                            <div class="inputs-part__div">
+                                {{form.password|attr:"maxlength:40"}}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="line line__bottom">
+                        <hr class="line__dashed line__dashed-620">
+                        <hr class="line__dashed line__dashed-620">
+                    </div>
+                    <div class="button-submit">
+                        <button class="button" type="submit" name="next" value="{{ request.GET.next }}">
+                            <p class="button-p">Войти</p>
+                        </button>
+                        <a href="{% url 'register' %}" class="a-account">
+                            Нет аккаунта? Зарегистрируйтесь!
+                        </a>
+
+
+                    </div>
+                </form>
+
+                {% if form.non_field_errors or form.username.errors or form.amount.errors or form.password.errors %}
+                <div class="error">
+                    {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <div class="error-item">{{error}}</div>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                        <div class="error-item">{{error}}</div>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if form.username.errors %}
+                    {% for error in form.username.errors %}
+                        <div class="error-item">{{error}}</div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+        </main>
+        <!-- <div class="bottom-margin"></div> -->
+    </body>
+{% endblock %}
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+		{% include "favicon.html" %}
+        <title>PMarket | Регистрация</title>
+    </head>
+    <body>
+<!--        <header class="header">-->
+<!--            <div class="header-container">-->
+<!--                    <nav class="nav">-->
+<!--                        <div class="nav-logo">-->
+<!--                            <a href="#" class="nav-log__title">КроссМ</a>-->
+<!--                        </div>-->
+<!--                        <div class="menu">-->
+<!--                            <a href="#" class="nav-menu__title">Каталог</a>-->
+<!--                            <a href="#" class="nav-menu__title">Что такое КМ?</a>-->
+<!--                            <a href="#" class="nav-menu__title">Мои предложения</a>-->
+<!--                            <div class="nav-menu__user">-->
+<!--                            &lt;!&ndash; <img class="nav-menu__user__img" src="../images/Dima.jpg"> &ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </nav>-->
+<!--            </div>-->
+<!--        </header>-->
+
+
+{% block content %}
+
+        <main>
+            <div class="container-padding">
+            <div class="container">
+                <h2 class="main-title">
+                    Регистрация
+                </h2>
+                <hr class="hr-solid">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="line">
+                        <hr class="line__dashed line__dashed-620">
+                        <hr class="line__dashed line__dashed-620">
+                    </div>
+
+                    <div class="inputs">
+                        <div class="inputs-part inputs-part__left">
+                            <h3 class="inputs-part__title">Email</h3>
+                            <div class="inputs-part__div">
+                                {{form.email|attr:"maxlength:36"}}
+                            </div>
+
+                <p class="input__comment">Этот адрес Вы будете использовать
+                                <br>для входа в учетную запись
+
+                        </div>
+                        <div class="inputs-part inputs-part__center">
+                            <h3 class="inputs-part__title">Пароль</h3>
+                            <div class="inputs-part__div">
+                                {{form.password1|attr:"maxlength:40"}}
+                            </div>
+
+                            <p class="input__comment">Пароль должен содержать минимум 1 заглавную
+                                <br>букву, 1 число и 1 специальный символ
+
+                        </div>
+                        <div class="inputs-part inputs-part__right">
+                            <h3 class="inputs-part__title">Повторите пароль</h3>
+                            <div class="inputs-part__div">
+                                {{form.password2|attr:"maxlength:40"}}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="line line__bottom">
+                        <hr class="line__dashed line__dashed-460">
+                        <hr class="line__dashed line__dashed-340">
+                        <hr class="line__dashed line__dashed-400">
+                    </div>
+                    <div class="button-submit">
+                        <button class="button" type="submit">
+                            <p class="button-p">Зарегистрироваться</p>
+                        </button>
+                        <a href="{% url 'login' %}" class="a-account">
+                            Уже есть аккаунт ?
+                        </a>
+
+                    </div>
+                </form>
+                 {% if form.non_field_errors or form.first_name.errors or form.last_name.errors or form.email.errors or form.password1.errors or form.password2.errors %}
+            <div class="error">
+
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <div class="error-item">{{error}}</div>
+                {% endfor %}
+                {% endif %}
+
+                {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                <div class="error-item">{{error}}</div>
+                {% endfor %}
+                {% endif %}
+
+                {% if form.password1.errors %}
+                {% for error in form.password1.errors %}
+                <div class="error-item">{{error}}</div>
+                {% endfor %}
+                {% endif %}
+
+                {% if form.password2.errors %}
+                {% for error in form.password2.errors %}
+                <div class="error-item">{{error}}</div>
+                {% endfor %}
+                {% endif %}
+
+            </div>
+                {% endif %}
+            </div>
+        </div>
+        </main>
+        <!-- <div class="bottom-margin"></div> -->
+    {% endblock %}
+    </body>
+
+</html>

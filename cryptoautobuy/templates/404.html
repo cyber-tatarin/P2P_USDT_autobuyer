@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% include "favicon.html" %}
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/styles/choices.min.css"/>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		{% include "favicon.html" %}
+        <title>404</title>
+    </head>
+    <body>
+        {% include "base.html" %}
+        <main>
+            <div class="container-padding">
+            <div class="container">
+                <h2 class="main-title">
+                    Ошибка 404 :((
+                </h2>
+                <hr class="hr-solid">
+                <form action="">
+                    <div style="display:block;" class="inputs">
+                        <div style="text-align:center;" class="inputs-part inputs-part__double">
+                            
+                           <p class="p-no-reviews" style="margin-bottom:28px; position:static;">
+                            К сожалению, такой страницы не существует... <br>Воспользуйтесь навигационным меню сверху, <br>чтобы перейти на нужную страницу
+                           </p>
+                           <a href="#" class="a-account">Написать в техподдержку</a>
+                            <!-- <div class="bottom-16px"></div>
+                            <p class="input__comment">Если в списке нет Вашего города, 
+                            <br>выберите ближайший областной центр</p> -->
+                        </div>        
+                    </div>
+                </form>
+            </div>     
+        </div>
+        </main>
+        <!-- <div class="bottom-margin"></div> -->
+<!--        <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js"></script>-->
+<!--        <script src="../js/main.js"></script>-->
+    </body>
+
+
+</html>
