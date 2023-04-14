@@ -44,7 +44,7 @@ def get_position(full_picture_url, puzzle_piece_url, y_pos):
 	# checking script by drawing rectangle around the most matching area
 	(h, w) = edges1.shape[:2]
 	cv2.rectangle(edges2, max_loc, (max_loc[0] + w, max_loc[1] + h), (255, 0, 0), 5)
-	cv2.imwrite(f'{dt_string}_full.png', edges2)
+	# cv2.imwrite(f'{dt_string}_full.png', edges2)
 	#
 	# # print(max_loc[0])
 	#

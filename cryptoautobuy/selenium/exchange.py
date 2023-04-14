@@ -199,18 +199,28 @@ class OKXExchangeHandler(ExchangeHandlerBase):
             offer_card_html = offer_card.get_attribute('innerHTML')
             
             print('kakaka', offer_card_html)
-
+            
             limits_list = re.search(
-                r'<div class="show-item">(\d*\.\d*-.*) BYN', offer_card_html).group().split('-')
-            limits_list = [float(x) for x in limits_list]
+                r'<div class="show-item">(\d*,?\d*\.\d*-.*) BYN', offer_card_html).group(1).split('-')
+            
+            print(limits_list)
+            
+            limits_list = [float(x.replace(',', '')) for x in limits_list]
             
             if limits_list[0] < 20 < limits_list[1]:
                 change_rate_for_card_with_suitable_limit = float(re.search(
-                    r'>[123]\.\d\d BYN', offer_card_html).group()[1:-4])
+                    r'>([123]\.\d\d).{,12}(\r\n|\r|\n)?.{,10}BYN', offer_card_html).group(1))
                 
                 print(change_rate_for_card_with_suitable_limit)
+                
+                # for character in change_rate_for_card_with_suitable_limit:
+                #     if not character.isdigit() or character != '.':
+                #         change_rate_for_card_with_suitable_limit = change_rate_for_card_with_suitable_limit.replace(character, '')
+                
+                # change_rate_for_card_with_suitable_limit = float(change_rate_for_card_with_suitable_limit)
+                print(change_rate_for_card_with_suitable_limit)
         
-                if change_rate_for_card_with_suitable_limit - change_rate_min < 0.15:
+                if change_rate_for_card_with_suitable_limit - change_rate_min < 0.20:
                     buy_buttons = self.driver.find_elements(by=By.CSS_SELECTOR, value='button.base-trade-btn')
                     # Clicking buy button in card with suitable limit
                     buy_buttons[index].click()
